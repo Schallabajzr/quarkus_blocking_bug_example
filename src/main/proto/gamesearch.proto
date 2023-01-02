@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.acme.example";
+option java_outer_classname = "GameSearchProto";
+
+package game.search;
+
+service GameService {
+  rpc GetGamesByName(GetGamesByNameRequest) returns (GetGamesByNameResponse);
+}
+
+message GetGamesByNameRequest {
+  string search_string = 1;
+}
+
+message GetGamesByNameResponse {
+  repeated GameBySearchDto games = 1;
+}
+
+message GameBySearchDto {
+  string name = 1;
+  string appid = 2;
+  StoreEnum store_enum = 3;
+}
+
+enum StoreEnum {
+  STEAM = 0;
+}
